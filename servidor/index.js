@@ -41,14 +41,14 @@ app.get("/items/listado", authMiddleware, async (req, res, next) => {
   }
   res.json(items);
 });
-app.put("/usuarios/login", (req, res, next) => {
+app.put("/usuarios/login", async (req, res, next) => {
   const { usuario, password } = req.body;
   if (!usuario || !password) {
     const nuevoError = new Error("Faltan credenciales");
     nuevoError.codigo = 400;
     return next(nuevoError);
   }
-  const idUsuario = getIdUsuario(usuario, password);
+  const idUsuario = await getIdUsuario(usuario, password);
   if (idUsuario) {
     const token = jwt.sign({ id: idUsuario }, process.env.JWT_SECRET, {
       expiresIn: "2m",
