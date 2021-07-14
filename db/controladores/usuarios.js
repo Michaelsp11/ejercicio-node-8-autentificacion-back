@@ -9,9 +9,8 @@ const listarItems = async (idUsuario) => {
 const getIdUsuario = async (usuario, passwordUsuario) => {
   const usuarioBD = await Usuario.findOne({
     nombre: usuario,
-    password: passwordUsuario,
   });
-  return usuarioBD._id ? usuarioBD._id : null;
+  return usuarioBD.contrasenya === passwordUsuario ? usuarioBD._id : null;
 };
 module.exports = {
   listarItems,
