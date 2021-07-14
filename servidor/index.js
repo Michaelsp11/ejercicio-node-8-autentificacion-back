@@ -49,7 +49,7 @@ app.put("/usuarios/login", (req, res, next) => {
     return next(nuevoError);
   }
   const idUsuario = getIdUsuario(usuario, password);
-  if (!idUsuario) {
+  if (idUsuario) {
     const token = jwt.sign({ id: idUsuario }, process.env.JWT_SECRET, {
       expiresIn: "2m",
     });

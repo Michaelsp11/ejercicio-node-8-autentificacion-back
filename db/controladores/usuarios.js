@@ -11,7 +11,7 @@ const getIdUsuario = async (usuario, passwordUsuario) => {
     nombre: usuario,
     password: passwordUsuario,
   });
-  return usuarioBD._id;
+  return usuarioBD._id ? usuarioBD._id : null;
 };
 module.exports = {
   listarItems,
