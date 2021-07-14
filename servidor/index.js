@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 const { error404, errorGeneral } = require("./errores");
 
 const app = require("./init");
-const { listarItems, getIdUsuario } = require("../db/controladores/usuarios");
+const { getIdUsuario } = require("../db/controladores/usuarios");
+const { listarItems } = require("../db/controladores/items");
 
 const authMiddleware = (req, res, next) => {
   if (!req.header("Authorization")) {
